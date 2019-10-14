@@ -1,0 +1,30 @@
+<head>
+	<style type="text/css">
+		.menu{
+			float: left;
+			width: 24%;
+			border-style: solid;
+			border-width: 3px;
+		}
+		.content{
+			float: right;
+			width: 75%;
+			overflow: auto;
+			border-style: solid;
+			border-width: 3px;
+		}
+	</style>
+</head>
+<div>
+	<div class="menu">
+		<ul>
+			<li><%= link_to 'Edit Profile', edit_user_registration_path%></li>
+			<li><%= link_to 'Friends', friends_user_path(current_user) %></li>
+			<li><%= link_to 'Friend Requests', requests_user_path(current_user) %></li>
+			<li><%= link_to 'Signout', destroy_user_session_path, method: :delete%></li>
+		</ul>
+	</div>
+	<div class="content">
+		<%= render 'search' %>
+	</div>
+</div>
