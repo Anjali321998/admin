@@ -1,4 +1,4 @@
-<%= form_with scope: :user, url: search_users_path,local: true do |form| %>
+<%= form_with url: search_users_path,local: true do |form| %>
 	<p>
 		<%= form.label :search %>
 		<%= form.text_field :name%>

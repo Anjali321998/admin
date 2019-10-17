@@ -2,14 +2,15 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :registrations => :registrations }
   resources :users do
   	collection do
-  		get :list
   		post :search
   	end
-  	member do
-  		get :friends
-  		get :requests
-      post :add
-  	end
+  end
+  resources :friends do
+    member do
+      get :accept
+      get :reject
+      get :frequest
+    end
   end
   
   root to: 'users#index'
