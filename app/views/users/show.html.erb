@@ -2,7 +2,7 @@
 	<div class="menu">
 		<ul>
 			<li><%= link_to 'Edit Profile', edit_user_registration_path%></li>
-			<li><%= link_to 'Friends', friends_path(current_user) %></li>
+			<li><%= link_to 'Friends', friends_path %></li>
 			<li><%= link_to 'Friend Requests', frequest_friend_path(current_user) %></li>
 			<li><%= link_to 'Signout', destroy_user_session_path, method: :delete%></li>
 		</ul>
