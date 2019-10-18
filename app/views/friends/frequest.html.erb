@@ -1,7 +1,7 @@
 <% @requests.each do |r| %>
 	<% @u = User.find(r.sender_id) %>		
 	<%= @u.name %>
-	<%= link_to 'Accept',accept_friend_path(r)%>
-	<%= link_to 'Reject',reject_friend_path(r)%><br>
+	<%= link_to 'Accept',friend_path(r,{:status => :added}),method: :put%>
+	<%= link_to 'Reject',friend_path(r,{:status => :rejected}),method: :put%><br>
 <%end%>
 <%= link_to 'Back', user_path(current_user) %>

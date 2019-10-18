@@ -1,12 +1,9 @@
 class FriendsController < ApplicationController
-	before_action :find_friend, only: [:accept,:reject]
 
-	def new
+	def create
 		@receiver = User.find(params[:format])
 		@friend = Friend.create(sender_id: current_user.id,receiver_id: @receiver.id, status: :new_request)
-		if @friend.save
-			redirect_to user_path(current_user)
-		end
+		redirect_to user_path(current_user)
 	end
 	
 	def index
@@ -16,19 +13,11 @@ class FriendsController < ApplicationController
 	def frequest
 		@requests = current_user.requests
 	end
-	
-	def accept
-		@friend.status = "added"
-		if @friend.save
-			redirect_to frequest_friend_path(current_user.id)
-		end
-	end
-	
-	def reject
-		@friend.status = "rejected"
-		if @friend.save
-			redirect_to frequest_friend_path(current_user.id)
-		end
+
+	def update
+		@friend = Friend.find(params[:id])
+		@friend.update(status: params[:status])
+		redirect_to frequest_friend_path(current_user.id)	
 	end
 	
 	def destroy
@@ -36,10 +25,4 @@ class FriendsController < ApplicationController
 		@friend.destroy
 		redirect_to friends_path
 	end
-	
-	private
-	
-		def find_friend
-		@friend = Friend.find(params[:id])
-		end
 end

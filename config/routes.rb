@@ -7,8 +7,6 @@ Rails.application.routes.draw do
   end
   resources :friends do
     member do
-      get :accept
-      get :reject
       get :frequest
     end
   end
