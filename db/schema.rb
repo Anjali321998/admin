@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_21_082722) do
+ActiveRecord::Schema.define(version: 2019_10_21_131300) do
 
   create_table "friends", force: :cascade do |t|
     t.integer "sender_id"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 2019_10_21_082722) do
     t.integer "like_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "likeable_id"
+    t.string "likeable_type"
   end
 
   create_table "posts", force: :cascade do |t|

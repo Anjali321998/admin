@@ -9,4 +9,12 @@
 	<strong>Text:</strong>
 	<%= @post.data%>
 </p>
-<%= link_to 'Back', user_path(current_user) %>
+<p>
+	<%= pluralize( @post.like_count.size, "like") %>
+	<%= button_to 'Like', post_likes_path(@post,{like_status: :liked}),method: :post%>
+</p>
+<p>
+	<%= pluralize( @post.unlike_count.size, "unlike") %>
+	<%= button_to 'Unlike',post_likes_path(@post,{like_status: :unliked}),method: :post %>
+</p>
+<%= link_to 'Back', posts_path(current_user) %>

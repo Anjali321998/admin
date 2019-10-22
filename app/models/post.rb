@@ -4,4 +4,14 @@ class Post < ApplicationRecord
 	validates :data, presence: :true,length: {minimum: 10}
 	belongs_to :user,foreign_key: :user_id 
 	#has_many :likes, as: :likeable, dependent: :destroy
+	has_many :likes,as: :likeable, dependent: :destroy
+
+	def like_count 
+		likes.where(like_status: :liked)
+	end
+
+	def unlike_count
+		likes.where(like_status: :unliked)
+	end
+
 end

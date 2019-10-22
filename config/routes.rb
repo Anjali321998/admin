@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   	end
   end
 
-  resources :posts
+  resources :posts do
+    resources :likes
+  end
   
   resources :friends do
     member do

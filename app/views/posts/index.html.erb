@@ -12,6 +12,9 @@
 			<td><%= post.title%></td>
 			<td><%= post.data %></td>
 			<td><%= link_to 'Show',post_path(post)%></td>
+			<% if post.user == current_user %>
+				<td><%= link_to 'Edit', edit_post_path(post)%></td> 
+			<%end%>
 		</tr>
 	<% end %>
 </table>
