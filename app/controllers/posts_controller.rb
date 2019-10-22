@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 	
-	before_action :find_post, only: [:show,:edit,:update]
+	before_action :find_post, only: [:show,:edit,:update,:destroy]
 
 	def new
 		@post = Post.new
@@ -27,6 +27,11 @@ class PostsController < ApplicationController
 		users = current_user.friendships.ids
 		users<<current_user.id
 		@posts = Post.includes(:user).where(user_id: users) 
+	end
+
+	def destroy
+		@post.destroy
+		redirect_to posts_path
 	end
 	
 	private
