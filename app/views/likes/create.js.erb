@@ -1,0 +1,5 @@
+<%
+likeable = @like.likeable
+%>
+
+$("#like-<%= likeable.id%>").attr("href", '<%=post_like_path(likeable,@like)%>').attr("data-method", 'delete').text("Unlike")

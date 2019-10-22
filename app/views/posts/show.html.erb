@@ -10,11 +10,8 @@
 	<%= @post.data%>
 </p>
 <p>
-	<%= pluralize( @post.like_count.size, "like") %>
-	<%= button_to 'Like', post_likes_path(@post,{like_status: :liked}),method: :post%>
+	<%= pluralize( @post.likes.size, "like") %>
+	<%= link_to 'Like', post_likes_path(@post,current_user),method: :post,remote: true, id: "like-#{@post.id}"%>
 </p>
-<p>
-	<%= pluralize( @post.unlike_count.size, "unlike") %>
-	<%= button_to 'Unlike',post_likes_path(@post,{like_status: :unliked}),method: :post %>
-</p>
+
 <%= link_to 'Back', posts_path(current_user) %>
