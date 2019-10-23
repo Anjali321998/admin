@@ -8,8 +8,7 @@ class Post < ApplicationRecord
 		user_id == current_user_id
 	end
 
-	def like_exist? current_user_id
-		@like = likes.find_by(user: current_user_id)
-		return @like
+	def existing_user_like current_user_id
+		likes.find_by(user_id: current_user_id)
 	end
 end

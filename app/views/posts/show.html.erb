@@ -11,7 +11,7 @@
 </p>
 <p id = "like-count"><%= pluralize(@post.likes.size, 'like')%></p>
 <p>
-	<% @like = @post.like_exist? current_user%>
+	<% @like = @post.existing_user_like(current_user.id) %>
 	<% if @like %>
 		<%= link_to 'Unlike', post_like_path(@post,@like), method: :delete, remote: true, id: "like-#{@post.id}"%>
 	<%else%>
