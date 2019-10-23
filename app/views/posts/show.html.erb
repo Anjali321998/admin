@@ -10,8 +10,8 @@
 	<%= @post.data%>
 </p>
 <p>
-	<%= pluralize( @post.likes.size, "like") %>
-	<%= link_to 'Like', post_likes_path(@post,current_user),method: :post,remote: true, id: "like-#{@post.id}"%>
+	<%= pluralize( @post.likes.size, "like"), id: "like-count-#{@post.id}" %>
+	<%= link_to 'Like', post_likes_path(@post),method: :post,remote: true, id: "like-#{@post.id}"%>
 </p>
 
 <%= link_to 'Back', posts_path(current_user) %>

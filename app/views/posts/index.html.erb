@@ -12,7 +12,7 @@
 			<td><%= post.title%></td>
 			<td><%= post.data %></td>
 			<td><%= link_to 'Show',post_path(post)%></td>
-			<% if post.user == current_user %>
+			<% if post.is_post_owner? current_user %>
 				<td><%= link_to 'Edit', edit_post_path(post)%></td> 
 				<td><%= link_to 'Delete', post_path(post),method: :delete%></td>
 			<%end%>

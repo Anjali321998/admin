@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		@post = current_user.posts.new(post_params)
+		@post = current_user.posts.build(post_params)
 		if @post.save
 			redirect_to posts_path
 		else
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
 	private
 	
 	def post_params
-		params.require(:post).permit(:title, :data,:user_id, likes_attributes: [:likeable])
+		params.require(:post).permit(:title, :data, likes_attributes: [:likeable])
 	end
 
 	def find_post
