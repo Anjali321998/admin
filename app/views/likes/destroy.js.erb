@@ -1,1 +1,2 @@
 $("#like-<%= @likeable.id%>").attr("href","<%= post_likes_path(@likeable)%>").attr("data-method","post").text("Like")
+$("#like-count").html("<%= pluralize(@likeable.likes.size, 'like')%>")

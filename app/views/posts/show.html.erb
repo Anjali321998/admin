@@ -9,9 +9,14 @@
 	<strong>Text:</strong>
 	<%= @post.data%>
 </p>
+<p id = "like-count"><%= pluralize(@post.likes.size, 'like')%></p>
 <p>
-	<%= pluralize( @post.likes.size, "like"), id: "like-count-#{@post.id}" %>
-	<%= link_to 'Like', post_likes_path(@post),method: :post,remote: true, id: "like-#{@post.id}"%>
+	<% @like = @post.like_exist? current_user%>
+	<% if @like %>
+		<%= link_to 'Unlike', post_like_path(@post,@like), method: :delete, remote: true, id: "like-#{@post.id}"%>
+	<%else%>
+		<%= link_to 'Like', post_likes_path(@post), method: :post, remote: true, id: "like-#{@post.id}"%>
+	<%end%>
 </p>
 
-<%= link_to 'Back', posts_path(current_user) %>
+<%= link_to 'Back', posts_path(current_user) %>																																																																																																																

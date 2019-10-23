@@ -7,4 +7,9 @@ class Post < ApplicationRecord
 	def is_post_owner? current_user_id
 		user_id == current_user_id
 	end
+
+	def like_exist? current_user_id
+		@like = likes.find_by(user: current_user_id)
+		return @like
+	end
 end
