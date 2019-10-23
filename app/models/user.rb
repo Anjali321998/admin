@@ -12,7 +12,8 @@ class User < ApplicationRecord
   def requests
   	friends.where(status: :new_request)
   end
-
+  
+  has_many :comments, dependent: :destroy
   has_many :posts,dependent: :destroy
   has_many :likes, dependent: :destroy
   #def friendships

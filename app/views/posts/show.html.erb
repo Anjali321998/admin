@@ -1,22 +1,58 @@
-<p>
-	<strong><%= @post.user.name%></strong>
-</p>
-<p>
-	<strong>Title:</strong>
-	<%= @post.title%>
-</p>
-<p>
-	<strong>Text:</strong>
-	<%= @post.data%>
-</p>
-<p id = "like-count"><%= pluralize(@post.likes.size, 'like')%></p>
-<p>
-	<% @like = @post.existing_user_like(current_user.id) %>
-	<% if @like %>
-		<%= link_to 'Unlike', post_like_path(@post,@like), method: :delete, remote: true, id: "like-#{@post.id}"%>
-	<%else%>
-		<%= link_to 'Like', post_likes_path(@post), method: :post, remote: true, id: "like-#{@post.id}"%>
+<div>
+	<p>
+		<strong><%= @post.user.name%></strong>
+	</p>
+	
+	<p>
+		<strong>Title:</strong>
+		<%= @post.title%>
+	</p>
+	
+	<p>
+		<strong>Text:</strong>
+		<%= @post.data%>
+	</p>
+	
+	<p id = "like-count"><%= pluralize(@post.likes.size, 'like')%></p>
+	
+	<p>
+		<% @like = @post.existing_user_like(current_user.id) %>
+		<% if @like %>
+			<%= link_to 'Unlike', post_like_path(@post,@like), method: :delete, remote: true, id: "like-#{@post.id}"%>
+		<%else%>
+			<%= link_to 'Like', post_likes_path(@post), method: :post, remote: true, id: "like-#{@post.id}"%>
+		<%end%>
+	</p>
+</div>
+
+<div id = "new-comment-form">
+	<strong>Add a Comment</strong>
+	<%= form_with(model: [@post, @post.comments.build], local: true) do |form| %>
+		<p>
+			<%= form.text_field :comment_text %>
+		</p>
+		<p>
+			<%= form.submit %>
+		</p>
 	<%end%>
-</p>
+</div>
+
+<div id = "comments-list">
+	<strong>Comments List:</strong>
+	<% @post.comments.each do |comment| %>
+		<p>
+			<strong>Comment:</strong>
+			<%= comment.comment_text %>
+		</p>
+		<p>
+			<% @like = comment.existing_user_like(current_user.id) %>
+			<% if @like %>
+				<%= link_to 'Unlike', post_comment_like_path(comment,@like), method: :delete, remote: true, id: "like-#{comment.id}"%>
+			<%else%>
+				<%= link_to 'Like', post_comment_likes_path(comment), method: :post, remote: true, id: "like-#{comment.id}"%>
+			<%end%>
+		</p>
+	<%end%>
+</div>
 
 <%= link_to 'Back', posts_path(current_user) %>																																																																																																																

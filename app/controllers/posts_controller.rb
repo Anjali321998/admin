@@ -37,7 +37,7 @@ class PostsController < ApplicationController
 	private
 	
 	def post_params
-		params.require(:post).permit(:title, :data, likes_attributes: [:likeable])
+		params.require(:post).permit(:title, :data, likes_attributes: [:likeable], comments_attributes:[:id, :comment_text])
 	end
 
 	def find_post
