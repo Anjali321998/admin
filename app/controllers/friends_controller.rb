@@ -11,7 +11,7 @@ class FriendsController < ApplicationController
 	end
 	
 	def frequest
-		@requests = current_user.requests
+		@requests = current_user.friend_requests
 	end
 
 	def update

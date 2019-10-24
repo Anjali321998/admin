@@ -6,6 +6,11 @@ class PostsController < ApplicationController
 		@post = Post.new
 	end 
 
+	def show 
+		@like = @post.existing_user_like(current_user.id)
+		@comments = @post.comments
+	end
+
 	def create
 		@post = current_user.posts.build(post_params)
 		if @post.save
