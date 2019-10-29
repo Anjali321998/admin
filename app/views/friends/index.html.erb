@@ -1,5 +1,7 @@
-<% @friends.each do |f| %>
-	<%= f.name %>
-	<%= link_to 'Remove',friend_path(f),method: :delete%><br>
-<%end%>
-<%= link_to 'Back', user_path(current_user) %>
+<ul class="list-group">
+	<% @friends.each do |f| %>
+		<li class="list-group-item"><%= f.name %>
+			<%= link_to 'Remove',friend_path(f),method: :delete%><br>
+		</li>
+	<%end%>
+</ul>

@@ -9,11 +9,11 @@ class User < ApplicationRecord
   has_many :friends, foreign_key: :receiver_id
   has_many :friendships, -> { where(friends: {status: 'added'}) }, :through => :friends, source: :sender
 
+  has_many :comments, dependent: :destroy
+  has_many :posts,dependent: :destroy
+  has_many :likes, dependent: :destroy  
+
   def friend_requests
   	friends.where(status: :new_request)
   end
-  
-  has_many :comments, dependent: :destroy
-  has_many :posts,dependent: :destroy
-  has_many :likes, dependent: :destroy	
 end

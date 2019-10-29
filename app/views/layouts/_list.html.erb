@@ -1,0 +1,19 @@
+<div class="row">
+	<div class="col-sm-2">
+			<ul class="bg-dark" >
+				<li><%= link_to 'Posts', posts_path%></li>
+				<li><%= link_to 'Edit Profile', edit_user_registration_path%></li>
+				<li><%= link_to 'Friends', friends_path%></li>
+				<li><%= link_to 'Friend Requests', frequest_friend_path(current_user)%></li>
+			</ul>
+		</nav>
+	</div>
+	<div class="col-sm-10">
+		<%= form_with url: search_users_path,local: true do |form| %>
+			<p>
+				<%= form.text_field :name%>
+				<%= form.submit 'Search'%>
+			</p>
+		<%end%>
+	</div>
+</div>

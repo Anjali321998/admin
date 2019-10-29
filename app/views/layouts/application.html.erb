@@ -11,6 +11,10 @@
 
   <body>
     <%= render 'layouts/header'%>
+    <%if current_user %>
+      <%= render 'layouts/list'%>
+      <%= render 'layouts/search'%>
+    <%end%> 
     <%= yield %>
   </body>
 </html>
